@@ -17,23 +17,23 @@ public class StringController {
     }
 
     @GetMapping("/append")
-    public String Append(@RequestParam("str1") String s1, @RequestParam("str2") String s2){
-        return stringService.Append(s1, s2);
+    public String append(@RequestParam("str1") String s1, @RequestParam("str2") String s2){
+        return stringService.append(s1, s2);
     }
 
     @GetMapping("/contains")
-    public boolean Contain(@RequestParam("str1") String s1, @RequestParam("str2") String s2){
-        return stringService.Contain(s1, s2);
+    public boolean contain(@RequestParam("str1") String s1, @RequestParam("str2") String s2){
+        return stringService.contain(s1, s2);
     }
 
     @GetMapping("/len")
-    public int Append(@RequestParam("str1") String s1){
-        return stringService.Length(s1);
+    public int len(@RequestParam("str1") String s1){
+        return stringService.length(s1);
     }
 
     @GetMapping("/equals")
-    public boolean Equal(@RequestParam("str1") String s1, @RequestParam("str2") String s2) {
-        return stringService.Equal(s1, s2);
+    public boolean equal(@RequestParam("str1") String s1, @RequestParam("str2") String s2) {
+        return stringService.equal(s1, s2);
     }
 
 
