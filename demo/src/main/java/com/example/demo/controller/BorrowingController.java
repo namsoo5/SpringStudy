@@ -5,6 +5,7 @@ import com.example.demo.service.BorrowingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,24 +17,11 @@ public class BorrowingController {
     public BorrowingController(BorrowingService borrowingService) {
         this.borrowingService = borrowingService;
     }
-    @GetMapping
-    public List<Borrowing> getAllBorrowList() {
-        return borrowingService.getAllBorrowList();
-    }
 
     @GetMapping
-    public Borrowing getBorrowListByMemberId(@RequestParam("memberId") int memberId) {
-        return borrowingService.getBorrowListByMemberId(memberId);
-    }
+    public List<Borrowing> getBorrowListById(@RequestParam(value = "memberId", required = false, defaultValue = "-1") int memberId, @RequestParam(value = "bookId", required = false, defaultValue = "-1") int bookId) {
 
-    @GetMapping
-    public Borrowing getBorrowListByBookId(@RequestParam("bookId") int bookId) {
-        return borrowingService.getBorrowListByBookId(bookId);
-    }
-
-    @GetMapping
-    public Borrowing getBorrowListById(@RequestParam("memberId") int memberId, @RequestParam("bookId") int bookId) {
-        return borrowingService.getBorrowListById(memberId, bookId);
+            return borrowingService.getBorrowListById(memberId, bookId);
     }
 
     @GetMapping("/{borrowingId}")

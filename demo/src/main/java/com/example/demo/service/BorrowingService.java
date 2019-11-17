@@ -26,43 +26,23 @@ public class BorrowingService {
         this.bookService = bookService;
     }
 
-    public List<Borrowing> getAllBorrowList() {
-        return borrowings;
-    }
 
-    public Borrowing getBorrowListByBookId(int bookId) {
+    public List<Borrowing> getBorrowListById(int memberId, int bookId) {
+        List<Borrowing> list = new ArrayList<>();
+
         for (Borrowing borrow : borrowings) {
-            if (borrow.getBook().getId() == bookId) {
-                return borrow;
+            if ((memberId == -1 || borrow.getMember().getId() == memberId)
+                    && (bookId == -1 || borrow.getBook().getId() == bookId)) {
+                list.add(borrow);
             }
         }
 
-        return null;
+        return list;
     }
 
-    public Borrowing getBorrowListByMemberId(int memberId) {
+    public Borrowing getBorrowListByBorrowId(int borrowId) {
         for (Borrowing borrow : borrowings) {
-            if (borrow.getMember().getId() == memberId) {
-                return borrow;
-            }
-        }
-
-        return null;
-    }
-
-    public Borrowing getBorrowListById(int memberId, int bookId) {
-        for (Borrowing borrow : borrowings) {
-            if (borrow.getMember().getId() == memberId && borrow.getBook().getId() == bookId) {
-                return borrow;
-            }
-        }
-
-        return null;
-    }
-
-    public Borrowing getBorrowListByBorrowId(int borrowId){
-        for (Borrowing borrow: borrowings){
-            if(borrow.getId() == borrowId){
+            if (borrow.getId() == borrowId) {
                 return borrow;
             }
         }
@@ -73,6 +53,11 @@ public class BorrowingService {
     public Borrowing borrowBook(int memberId, int bookId) throws ParseException {
         Member member = memberService.getMemberById(memberId);
         Book book = bookService.getBooksById(bookId);
+
+        if(book.isOut()){
+            return null;
+        }
+
         book.setOut(true);
 
         Borrowing borrow = new Borrowing();
@@ -88,7 +73,7 @@ public class BorrowingService {
         return borrow;
     }
 
-    public Date afterWeek(Calendar cal){
+    public Date afterWeek(Calendar cal) {
 
         cal.add(Calendar.DATE, 7);
         Date after = cal.getTime();
@@ -103,8 +88,8 @@ public class BorrowingService {
 
     public Borrowing lendBook(int bookId) throws ParseException {
         bookService.getBooksById(bookId).setOut(false);
-        for(Borrowing borrow:borrowings){
-            if(borrow.getBook().getId() == bookId){
+        for (Borrowing borrow : borrowings) {
+            if (borrow.getBook().getId() == bookId) {
                 borrow.setReturnTime(changeFormat(Calendar.getInstance()));
                 return borrow;
             }
@@ -112,9 +97,9 @@ public class BorrowingService {
         return null;
     }
 
-    public Borrowing extensionBook(int bookId){
-        for(Borrowing borrow:borrowings){
-            if(borrow.getBook().getId() == bookId){
+    public Borrowing extensionBook(int bookId) {
+        for (Borrowing borrow : borrowings) {
+            if (borrow.getBook().getId() == bookId) {
                 Date expiry = borrow.getExpiryTime();
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(expiry);
@@ -125,9 +110,9 @@ public class BorrowingService {
         return null;
     }
 
-    public Borrowing deleteBorrowing(int borrowingId){
-        for(Borrowing borrow:borrowings){
-            if(borrow.getId() == borrowingId){
+    public Borrowing deleteBorrowing(int borrowingId) {
+        for (Borrowing borrow : borrowings) {
+            if (borrow.getId() == borrowingId) {
                 borrowings.remove(borrow);
                 return borrow;
             }
