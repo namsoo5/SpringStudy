@@ -77,3 +77,18 @@
     }
 
 ```
+
+<br>
+
+> 과제
+``` java
+@GetMapping
+    public List<Borrowing> getBorrowListById(@RequestParam(value = "memberId", required = false, defaultValue = "-1") int memberId, @RequestParam(value = "bookId", required = false, defaultValue = "-1") int bookId) {
+
+            return borrowingService.getBorrowListById(memberId, bookId);
+    }
+```
+* RequestPara에 옵션을 설정할 수 있음
+    * value = 가져올 키값
+    * required = 필수로 가져올건지 여부
+    * defaultValue = 없을경우 기본값(String형태만 가능 0표시 -> "0")
