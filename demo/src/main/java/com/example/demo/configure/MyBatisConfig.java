@@ -20,12 +20,12 @@ import javax.sql.DataSource;
 @Configuration
 @MapperScan("com.example.demo.mapper")
 public class MyBatisConfig {
-    private static final String RDS_ENDPOINT = "soptspringstudy.cohpcz8q44yv.ap-northeast-2.rds.amazonaws.com";
+    private static final String RDS_ENDPOINT = "sopt-study-rdb.ckfwxaqy3lbj.ap-northeast-2.rds.amazonaws.com";
     private static final int RDS_PORT = 3306;
-    private static final String RDS_DATABASE_NAME = "sopt_spring_study";
+    private static final String RDS_DATABASE_NAME = "sopt-study-rdb";
     private static final String CONNECTION_OPTION = "useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC";
-    private static final String RDS_USER_NAME = "root";
-    private static final String RDS_PASSWORD = "123123123";
+    private static final String RDS_USER_NAME = "admin";
+    private static final String RDS_PASSWORD = "12341234";
 
     @Bean
     public DataSource getDataSource() {

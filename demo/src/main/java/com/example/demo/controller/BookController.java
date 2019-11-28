@@ -18,8 +18,8 @@ public class BookController {
 
     //추가
     @PostMapping("")
-    public Book saveBook(@RequestBody Book book){
-        return bookService.saveBook(book);
+    public boolean saveBook(@RequestBody Book book){
+        return bookService.saveBook(book) != 0;
     }
 
     //전체검색
@@ -36,12 +36,12 @@ public class BookController {
 
     //수정
     @PutMapping("/{bookId}")
-    public Book putBook(@RequestBody Book book, @PathVariable int bookId){
+    public boolean putBook(@RequestBody Book book, @PathVariable int bookId){
         return bookService.putBook(bookId, book);
     }
 
     @DeleteMapping("/{bookId}")
-    public Book deleteBook(@PathVariable int bookid){
-        return bookService.deleteBook(bookid);
+    public boolean deleteBook(@PathVariable int bookId){
+        return bookService.deleteBook(bookId);
     }
 }
