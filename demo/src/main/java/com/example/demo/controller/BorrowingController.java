@@ -30,22 +30,22 @@ public class BorrowingController {
     }
 
     @PostMapping("/members/{memberId}/books/{bookId}")
-    public Borrowing borrowBook(@PathVariable int memberId, @PathVariable int bookId) throws ParseException {
+    public boolean borrowBook(@PathVariable int memberId, @PathVariable int bookId) throws ParseException {
         return borrowingService.borrowBook(memberId,bookId);
     }
 
     @PatchMapping("/return/books/{bookId}")
-    public Borrowing lendBook(@PathVariable int bookId) throws ParseException {
+    public boolean lendBook(@PathVariable int bookId) throws ParseException {
         return borrowingService.lendBook(bookId);
     }
 
     @PatchMapping("/extension/books/{bookId}")
-    public Borrowing extensionBook(@PathVariable int bookId){
+    public boolean extensionBook(@PathVariable int bookId){
         return borrowingService.extensionBook(bookId);
     }
 
     @DeleteMapping("/{borrowingId}")
-    public Borrowing deleteBorrowing(@PathVariable int borrowingId){
+    public boolean deleteBorrowing(@PathVariable int borrowingId){
         return borrowingService.deleteBorrowing(borrowingId);
     }
 }

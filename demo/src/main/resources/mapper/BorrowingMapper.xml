@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.BorrowingMapper">
+
+    <select id="getBorrowListById" resultType="com.example.demo.model.Borrowing">
+        <choose>
+            <when test="memberId == -1 and bookId == -1">
+                SELECT * FROM borrowing;
+            </when>
+            <otherwise>
+                SELECT * FROM borrowing WHERE member_id = #{memberId} OR book_id = #{bookId};
+            </otherwise>
+        </choose>
+
+    </select>
+
+    <select id="getBorrowListByBorrowId" resultType="com.example.demo.model.Borrowing">
+        SELECT * FROM borrowing WHERE id = #{borrowId};
+    </select>
+
+    <insert id="borrowBook" useGeneratedKeys="true">
+-- 추후에 현재시간 + 7일 정함수 적용예
+                INSERT INTO borrowing(member_id, book_id)
+                VALUE (#{memberId}, #{bookId});
+    </insert>
+
+    <update id="lendBook">
+        UPDATE borrowing SET return_time = NOW() WHERE book_id = #{bookId};
+    </update>
+
+    <update id="extensionBook" useGeneratedKeys="true">
+--         UPDATE borrowing SET expiry_time =
+--         WHERE book_id = #{bookId};
+    </update>
+
+    <delete id="deleteBorrowing">
+        DELETE FROM borrowing WHERE id = #{borrowingId};
+    </delete>
+
+
+</mapper>
