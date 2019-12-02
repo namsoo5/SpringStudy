@@ -93,7 +93,8 @@
     * required = 필수로 가져올건지 여부
     * defaultValue = 없을경우 기본값(String형태만 가능 0표시 -> "0")
 
-
+<br>
+<br>
 
 ## 4회스터디
 ### 2019.11.23
@@ -106,6 +107,82 @@
 <br>
 
 > 과제
+
+* Mapper생성
+
+  * interface
+
+    * xml mapper에서 사용할 함수를 모아놓음
+
+    ``` java
+    @Mapper
+    @Component  //bean역할
+    public interface MemberMapper {
+    
+        public List<Member> getAllMembers();
+    
+        public Member getMemberById(@Param("id") int id);
+    
+        public int insertMember(@Param("member") Member member);
+    
+        public int updateMember(@Param("id") int id, @Param("member") Member member);
+    
+        public int deleteMember(@Param("id") int id);
+    }
+    ```
+
+    
+
+  * xml
+
+    * db의 실행문을 작성
+    * interface의 매개변수를 사용 할 수 있음
+
+  ``` java
+  <mapper namespace="com.example.demo.mapper.MemberMapper">
+  
+      <insert id="insertMember" useGeneratedKeys="true">
+          INSERT INTO member(email, password, name, phone_number)
+              VALUE (#{member.email}, #{member.password}, #{member.name}, #{member.phoneNumber});
+      </insert>
+  
+      <select id="getAllMembers" resultType="com.example.demo.model.Member">
+          SELECT * FROM member;
+      </select>
+  
+      <select id="getMemberById" resultType="com.example.demo.model.Member">
+          SELECT * FROM member WHERE id = #{id};
+      </select>
+  
+      <update id="updateMember" useGeneratedKeys="true">
+          UPDATE member SET email = #{member.email}, password = #{member.password}
+                          , name = #{member.name}, phone_number = #{member.phoneNumber}
+          WHERE id = #{id};
+      </update>
+  
+      <delete id="deleteMember">
+          DELETE FROM member WHERE id = #{id};
+      </delete>
+  
+  </mapper>
+  ```
+
+  
+
+<br>
+<br>
+
+## 5회스터디
+### 2019.12.01
+
+* Lombok
+* DTO생성
+* EC2에 배포하기
+
+<br>
+
+> 과제
+
 
 
 
