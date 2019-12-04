@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.request.InsertMemberRequestDTO;
 import com.example.demo.dto.request.UpdateMemberRequestDTO;
+import com.example.demo.dto.response.DetailMemberResponseDTO;
 import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.model.Member;
 import com.example.demo.service.MemberService;
@@ -30,7 +31,7 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}")
-    public Member getMemberById(@PathVariable int memberId){
+    public DetailMemberResponseDTO getMemberById(@PathVariable int memberId){
         return memberService.getMemberById(memberId);
     }
 

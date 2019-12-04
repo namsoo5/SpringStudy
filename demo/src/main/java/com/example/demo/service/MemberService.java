@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.request.InsertMemberRequestDTO;
 import com.example.demo.dto.request.UpdateMemberRequestDTO;
+import com.example.demo.dto.response.DetailMemberResponseDTO;
 import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.mapper.MemberMapper;
 import com.example.demo.model.Member;
@@ -38,15 +39,16 @@ public class MemberService {
         return dataList;
     }
 
-    public Member getMemberById(int memberId){
+    public DetailMemberResponseDTO getMemberById(int memberId){
 //        for(Member member : members){
 //            if(member.getId() == memberId){
 //                return member;
 //            }
 //        }
 //        return null;
+        Member member = memberMapper.getMemberById(memberId);
 
-        return memberMapper.getMemberById(memberId);
+        return DetailMemberResponseDTO.convert(member);
     }
 
     public boolean putMember(int memberId, UpdateMemberRequestDTO updatedMember){
