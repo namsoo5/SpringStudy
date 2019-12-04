@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.request.InsertMemberRequestDTO;
+import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.model.Member;
 import com.example.demo.service.MemberService;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +19,12 @@ public class MemberController {
     }
 
     @PostMapping("")
-    public boolean saveMember(@RequestBody Member member){
+    public boolean saveMember(@RequestBody InsertMemberRequestDTO member){
         return memberService.saveMember(member);
     }
 
     @GetMapping("")
-    public List<Member> getAllMembers(){
+    public List<SimpleMemberResponseDTO> getAllMembers(){
         return memberService.getAllMembers();
     }
 

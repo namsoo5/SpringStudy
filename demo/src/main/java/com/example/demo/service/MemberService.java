@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.request.InsertMemberRequestDTO;
+import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.mapper.MemberMapper;
 import com.example.demo.model.Member;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,7 +20,7 @@ public class MemberService {
         this.memberMapper = memberMapper;
     }
 
-    public boolean saveMember(Member member){
+    public boolean saveMember(InsertMemberRequestDTO member){
 //        member.setId(autoIncrement++);
 //
 //        members.add(member);
@@ -26,8 +29,12 @@ public class MemberService {
         return memberMapper.insertMember(member) != 0;
     }
 
-    public List<Member> getAllMembers(){
-        return memberMapper.getAllMembers();
+    public List<SimpleMemberResponseDTO> getAllMembers(){
+        List dataList = new ArrayList<SimpleMemberResponseDTO>();
+        for(Member member : memberMapper.getAllMembers()){
+            dataList.add(SimpleMemberResponseDTO.convert(member));
+        }
+        return dataList;
     }
 
     public Member getMemberById(int memberId){

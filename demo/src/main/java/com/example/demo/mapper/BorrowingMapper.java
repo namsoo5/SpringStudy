@@ -4,11 +4,13 @@ import com.example.demo.model.Book;
 import com.example.demo.model.Borrowing;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
 
 @Mapper
+@Component
 public interface BorrowingMapper {
 
     public List<Borrowing> getBorrowListById(@Param("memberId") int memberId, @Param("bookId") int bookId);
