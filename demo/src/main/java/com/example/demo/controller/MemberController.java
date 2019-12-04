@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.request.InsertMemberRequestDTO;
+import com.example.demo.dto.request.UpdateMemberRequestDTO;
 import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.model.Member;
 import com.example.demo.service.MemberService;
@@ -34,7 +35,7 @@ public class MemberController {
     }
 
     @PutMapping("/{memberId}")
-    public boolean updateMember(@PathVariable int memberId, @RequestBody Member updateMember){
+    public boolean updateMember(@PathVariable int memberId, @RequestBody UpdateMemberRequestDTO updateMember){
         return memberService.putMember(memberId, updateMember);
     }
 

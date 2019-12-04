@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.request.InsertMemberRequestDTO;
+import com.example.demo.dto.request.UpdateMemberRequestDTO;
 import com.example.demo.dto.response.SimpleMemberResponseDTO;
 import com.example.demo.mapper.MemberMapper;
 import com.example.demo.model.Member;
@@ -48,7 +49,7 @@ public class MemberService {
         return memberMapper.getMemberById(memberId);
     }
 
-    public boolean putMember(int memberId, Member updatedMember){
+    public boolean putMember(int memberId, UpdateMemberRequestDTO updatedMember){
 //
 //        for(Member member : members){
 //            if(member.getId() == memberId){
