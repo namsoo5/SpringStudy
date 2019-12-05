@@ -4,8 +4,8 @@
 <mapper namespace="com.example.demo.mapper.BookMapper">
 
     <insert id="insertBook" useGeneratedKeys="true">
-        INSERT INTO book(title, author, out)
-            VALUE (#{book.title}, #{book.author}, #{book.out});
+        INSERT INTO book(title, author)
+            VALUE (#{book.title}, #{book.author});
     </insert>
 
     <select id="getAllBooks" resultType="com.example.demo.model.Book">
