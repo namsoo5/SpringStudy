@@ -7,5 +7,4 @@ import lombok.Setter;
 public class InsertBookRequestDTO {
     private String title;
     private String author;
-    private boolean out;
 }

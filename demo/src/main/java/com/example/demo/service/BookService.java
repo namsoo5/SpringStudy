@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.request.InsertBookRequestDTO;
+import com.example.demo.dto.request.UpdateBookRequestDTO;
+import com.example.demo.dto.response.SimpleBookResponseDTO;
 import com.example.demo.mapper.BookMapper;
 import com.example.demo.model.Book;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,9 +30,16 @@ public class BookService {
     }
 
     //전체조회
-    public List<Book> getAllBooks(){
+    public List<SimpleBookResponseDTO> getAllBooks(){
 //        return books;
-        return bookMapper.getAllBooks();
+//        return bookMapper.getAllBooks();
+
+        List books = new ArrayList<SimpleBookResponseDTO>();
+        for(Book book : bookMapper.getAllBooks()){
+            books.add(SimpleBookResponseDTO.convert(book));
+        }
+
+        return books;
     }
 
     //아이디조회
@@ -46,7 +56,7 @@ public class BookService {
     }
 
     //정보수정
-    public boolean putBook(int bookId, Book updateBook){
+    public boolean putBook(int bookId, UpdateBookRequestDTO updateBook){
 //        for(Book book : books){
 //            if(book.getId() == bookId){
 //                book.setAuthor(updateBook.getAuthor());
@@ -61,6 +71,8 @@ public class BookService {
 //        books.add(updateBook);
 //
 //        return updateBook;
+
+        System.out.println(updateBook.isOut());
         return bookMapper.updateBook(bookId, updateBook) != 0;
     }
 

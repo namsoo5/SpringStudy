@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.request.InsertBookRequestDTO;
+import com.example.demo.dto.request.UpdateBookRequestDTO;
+import com.example.demo.dto.response.SimpleBookResponseDTO;
 import com.example.demo.model.Book;
 import com.example.demo.service.BookService;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +27,7 @@ public class BookController {
 
     //전체검색
     @GetMapping("")
-    public List<Book> getAllBooks(){
+    public List<SimpleBookResponseDTO> getAllBooks(){
         return bookService.getAllBooks();
     }
 
@@ -37,7 +39,7 @@ public class BookController {
 
     //수정
     @PutMapping("/{bookId}")
-    public boolean putBook(@RequestBody Book book, @PathVariable int bookId){
+    public boolean putBook(@RequestBody UpdateBookRequestDTO book, @PathVariable int bookId){
         return bookService.putBook(bookId, book);
     }
 
