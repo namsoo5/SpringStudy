@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.request.InsertBookRequestDTO;
 import com.example.demo.mapper.BookMapper;
 import com.example.demo.model.Book;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class BookService {
     }
 
     //추가
-    public int saveBook(Book book){
+    public int saveBook(InsertBookRequestDTO book){
 //        book.setId(autoIncrement++);
 //        books.add(book);
 //

@@ -1,5 +1,6 @@
 package com.example.demo.mapper;
 
+import com.example.demo.dto.request.InsertBookRequestDTO;
 import com.example.demo.model.Book;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,7 +15,7 @@ public interface BookMapper {
 
     public Book getBookById(@Param("id") int id);
 
-    public int insertBook(@Param("book") Book book);
+    public int insertBook(@Param("book") InsertBookRequestDTO book);
 
     public int updateBook(@Param("id") int id, @Param("book") Book book);
 

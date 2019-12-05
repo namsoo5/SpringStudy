@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.request.InsertBookRequestDTO;
 import com.example.demo.model.Book;
 import com.example.demo.service.BookService;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class BookController {
 
     //추가
     @PostMapping("")
-    public boolean saveBook(@RequestBody Book book){
+    public boolean saveBook(@RequestBody InsertBookRequestDTO book){
         return bookService.saveBook(book) != 0;
     }
 
