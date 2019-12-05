@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.request.InsertBookRequestDTO;
 import com.example.demo.dto.request.UpdateBookRequestDTO;
+import com.example.demo.dto.response.DetailBookResponseDTO;
 import com.example.demo.dto.response.SimpleBookResponseDTO;
 import com.example.demo.mapper.BookMapper;
 import com.example.demo.model.Book;
@@ -43,7 +44,7 @@ public class BookService {
     }
 
     //아이디조회
-    public Book getBooksById(int bookId){
+    public DetailBookResponseDTO getBooksById(int bookId){
 
 //        for(Book book : books){
 //            if(book.getId() == bookId){
@@ -52,7 +53,9 @@ public class BookService {
 //        }
 //
 //        return null;
-        return bookMapper.getBookById(bookId);
+//        return bookMapper.getBookById(bookId);
+
+        return DetailBookResponseDTO.convert(bookMapper.getBookById(bookId));
     }
 
     //정보수정

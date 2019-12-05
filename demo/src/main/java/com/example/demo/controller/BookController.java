@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.request.InsertBookRequestDTO;
 import com.example.demo.dto.request.UpdateBookRequestDTO;
+import com.example.demo.dto.response.DetailBookResponseDTO;
 import com.example.demo.dto.response.SimpleBookResponseDTO;
 import com.example.demo.model.Book;
 import com.example.demo.service.BookService;
@@ -33,7 +34,7 @@ public class BookController {
 
     //아이디검색
     @GetMapping("/{bookId}")
-    public Book getBooksById(@PathVariable int bookId){
+    public DetailBookResponseDTO getBooksById(@PathVariable int bookId){
         return bookService.getBooksById(bookId);
     }
 
